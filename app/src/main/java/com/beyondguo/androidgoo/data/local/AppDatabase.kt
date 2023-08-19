@@ -10,7 +10,7 @@ import com.beyondguo.androidgoo.data.local.entity.User
  * @date 2023/8/17 20:34
  * @description
  */
-@Database(entities = [User::class], version = 1)
+@Database(entities = [User::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao

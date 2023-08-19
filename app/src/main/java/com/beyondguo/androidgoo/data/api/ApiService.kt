@@ -1,6 +1,5 @@
 package com.beyondguo.androidgoo.data.api
 
-import com.beyondguo.androidgoo.data.local.entity.User
 import com.beyondguo.androidgoo.data.model.ApiUser
 import retrofit2.http.GET
 
@@ -12,10 +11,10 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET("user")
-    suspend fun getUsers(): List<User>
+    suspend fun getUsers(): List<ApiUser>
 
     @GET("more-user")
-    suspend fun getMoreUsers(): List<User>
+    suspend fun getMoreUsers(): List<ApiUser>
 
     @GET("error")
     suspend fun getUsersWithError(): List<ApiUser>

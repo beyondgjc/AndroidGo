@@ -1,6 +1,5 @@
 package com.beyondguo.androidgoo.data.api
 
-import com.beyondguo.androidgoo.data.local.entity.User
 import com.beyondguo.androidgoo.data.model.ApiUser
 
 /**
@@ -9,9 +8,9 @@ import com.beyondguo.androidgoo.data.model.ApiUser
  * @description
  */
 class ApiHelperImpl(private val apiService: ApiService): ApiHelper {
-    override suspend fun getUsers(): List<User> = apiService.getUsers()
+    override suspend fun getUsers(): List<ApiUser> = apiService.getUsers()
 
-    override suspend fun getMoreUsers(): List<User> = apiService.getMoreUsers()
+    override suspend fun getMoreUsers(): List<ApiUser> = apiService.getMoreUsers()
 
     override suspend fun getUsersWithError(): List<ApiUser> = apiService.getUsersWithError()
 }
