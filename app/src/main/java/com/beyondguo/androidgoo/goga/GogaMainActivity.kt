@@ -11,7 +11,7 @@ class GogaMainActivity : AppCompatActivity() {
 
     private var _binding: ActivityGogaMainBinding? = null
 
-    private val gogaMainViewHolder by lazy { ViewModelProvider(this)[GogaMainViewModel::class.java] }
+    private val gogaMainViewModel by lazy { ViewModelProvider(this)[GogaMainViewModel::class.java] }
 
     private val binding get() = _binding!!
 
