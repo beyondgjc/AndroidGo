@@ -15,9 +15,13 @@
         android:theme="@style/Theme.AndroidGoo"
         tools:targetApi="31">
         <activity
+            android:name=".goga.corountines.list.SeriesNetworkCallsActivity"
+            android:exported="false" />
+        <activity
             android:name=".goga.corountines.list.SingleNetworkCallActivity"
             android:exported="false" />
-        <activity android:name=".goga.menus.GogaMenuCorountinesActivity"
+        <activity
+            android:name=".goga.menus.GogaMenuCorountinesActivity"
             android:exported="false" />
         <activity
             android:name=".goga.menus.GogaMenuBasicActivity"

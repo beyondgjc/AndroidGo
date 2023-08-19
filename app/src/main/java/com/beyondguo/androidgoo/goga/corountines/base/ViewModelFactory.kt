@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.beyondguo.androidgoo.data.api.ApiHelper
 import com.beyondguo.androidgoo.data.local.DatabaseHelper
+import com.beyondguo.androidgoo.goga.corountines.list.SeriesNetworkCallsViewModel
 import com.beyondguo.androidgoo.goga.corountines.list.SingleNetworkCallViewModel
 import java.lang.IllegalArgumentException
 
@@ -17,6 +18,9 @@ class ViewModelFactory(private val apiHelper: ApiHelper, private val dbHelper: D
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(SingleNetworkCallViewModel::class.java)){
             return SingleNetworkCallViewModel(apiHelper, dbHelper) as T
+        }
+        if(modelClass.isAssignableFrom(SeriesNetworkCallsViewModel::class.java)){
+            return SeriesNetworkCallsViewModel(apiHelper, dbHelper) as T
         }
         throw IllegalArgumentException("Unknown class, it's not a view model")
     }

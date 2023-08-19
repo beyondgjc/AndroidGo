@@ -1,5 +1,6 @@
 package com.beyondguo.androidgoo.goga.corountines
 
+import com.beyondguo.androidgoo.goga.corountines.list.SeriesNetworkCallsActivity
 import com.beyondguo.androidgoo.goga.corountines.list.SingleNetworkCallActivity
 
 /**
@@ -9,6 +10,8 @@ import com.beyondguo.androidgoo.goga.corountines.list.SingleNetworkCallActivity
  */
 object CoroutinesMenuList {
     fun getMenu() : List<CorountinesModel>{
-        return listOf(CorountinesModel(SingleNetworkCallActivity::class.java.simpleName, SingleNetworkCallActivity::class.java))
+        return listOf(CorountinesModel(SingleNetworkCallActivity::class.java.simpleName, SingleNetworkCallActivity::class.java)
+                    , CorountinesModel(SeriesNetworkCallsActivity::class.java.simpleName, SeriesNetworkCallsActivity::class.java)
+                )
     }
 }

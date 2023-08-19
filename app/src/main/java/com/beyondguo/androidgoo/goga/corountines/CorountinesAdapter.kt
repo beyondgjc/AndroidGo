@@ -12,17 +12,17 @@ import com.beyondguo.androidgoo.R
  * @description
  */
 class CorountinesAdapter(val context: Context,
-    val corountinesList: List<CorountinesModel>) : RecyclerView.Adapter<CoroutinesViewHolder>() {
+                         private val coroutinesList: List<CorountinesModel>) : RecyclerView.Adapter<CoroutinesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoroutinesViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.listitem_corountines,parent, false)
         return CoroutinesViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return corountinesList.size
+        return coroutinesList.size
     }
 
     override fun onBindViewHolder(holder: CoroutinesViewHolder, position: Int) {
-        holder.setContent(context, corountinesList[position])
+        holder.setContent(context, coroutinesList[position])
     }
 }
