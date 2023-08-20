@@ -15,6 +15,12 @@
         android:theme="@style/Theme.AndroidGoo"
         tools:targetApi="31">
         <activity
+            android:name=".goga.corountines.list.RoomDBActivity"
+            android:exported="false" />
+        <activity
+            android:name=".goga.corountines.list.ParallelNetworkCallsActivity"
+            android:exported="false" />
+        <activity
             android:name=".goga.corountines.list.SeriesNetworkCallsActivity"
             android:exported="false" />
         <activity
