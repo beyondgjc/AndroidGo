@@ -11,6 +11,7 @@ import com.beyondguo.androidgoo.goga.corountines.base.UiState
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 
 /**
  * @author guojichao@bytedance.com
@@ -52,4 +53,32 @@ class ParallelNetworkCallsViewModel(
     }
 
     fun getUiState(): LiveData<UiState<List<ApiUser>>> = uiState
+
+    private fun fetchUsersIgnoreError() {
+        viewModelScope.launch {
+            uiState.postValue(UiState.Loading)
+            // supervisorScope 一个job error不会crash
+            supervisorScope {
+                val usersFromApiDeferred = async { apiHelper.getUsers() }
+                val moreUsersFromApiDeferred = async { apiHelper.getMoreUsers() }
+
+                val usersFromApi = try {
+                    usersFromApiDeferred.await()
+                }catch (e: Exception){
+                    emptyList()
+                }
+                val moreUsersFromApi = try {
+                    moreUsersFromApiDeferred.await()
+                }catch (e: Exception){
+                    emptyList()
+                }
+
+                val allUsersFromApi = mutableListOf<ApiUser>()
+                allUsersFromApi.addAll(usersFromApi)
+                allUsersFromApi.addAll(moreUsersFromApi)
+
+                uiState.postValue(UiState.Success(allUsersFromApi))
+            }
+        }
+    }
 }

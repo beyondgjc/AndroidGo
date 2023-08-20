@@ -1,6 +1,8 @@
 package com.beyondguo.androidgoo.data.api
 
 import com.beyondguo.androidgoo.data.model.ApiUser
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * @author guojichao@bytedance.com
@@ -8,9 +10,18 @@ import com.beyondguo.androidgoo.data.model.ApiUser
  * @description
  */
 class ApiHelperImpl(private val apiService: ApiService): ApiHelper {
-    override suspend fun getUsers(): List<ApiUser> = apiService.getUsers()
+    override suspend fun getUsers(): List<ApiUser> =
+        withContext(Dispatchers.IO) {
+            apiService.getUsers()
+        }
 
-    override suspend fun getMoreUsers(): List<ApiUser> = apiService.getMoreUsers()
+    override suspend fun getMoreUsers(): List<ApiUser> =
+        withContext(Dispatchers.IO){
+            apiService.getMoreUsers()
+        }
 
-    override suspend fun getUsersWithError(): List<ApiUser> = apiService.getUsersWithError()
+    override suspend fun getUsersWithError(): List<ApiUser> =
+        withContext(Dispatchers.IO) {
+            apiService.getUsersWithError()
+        }
 }

@@ -1,5 +1,6 @@
 package com.beyondguo.androidgoo.goga.corountines
 
+import com.beyondguo.androidgoo.goga.corountines.list.BasicActivity
 import com.beyondguo.androidgoo.goga.corountines.list.ParallelNetworkCallsActivity
 import com.beyondguo.androidgoo.goga.corountines.list.RoomDBActivity
 import com.beyondguo.androidgoo.goga.corountines.list.SeriesNetworkCallsActivity
@@ -16,6 +17,7 @@ object CoroutinesMenuList {
                     , CorountinesModel(SeriesNetworkCallsActivity::class.java.simpleName, SeriesNetworkCallsActivity::class.java)
                     , CorountinesModel(ParallelNetworkCallsActivity::class.java.simpleName, ParallelNetworkCallsActivity::class.java)
                     , CorountinesModel(RoomDBActivity::class.java.simpleName, RoomDBActivity::class.java)
+                    , CorountinesModel(BasicActivity::class.java.simpleName, BasicActivity::class.java)
                 )
     }
 }

@@ -10,10 +10,10 @@ import retrofit2.http.GET
  */
 interface ApiService {
 
-    @GET("user")
+    @GET("users")
     suspend fun getUsers(): List<ApiUser>
 
-    @GET("more-user")
+    @GET("more-users")
     suspend fun getMoreUsers(): List<ApiUser>
 
     @GET("error")

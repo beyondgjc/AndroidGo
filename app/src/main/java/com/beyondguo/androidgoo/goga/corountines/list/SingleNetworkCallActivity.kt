@@ -43,6 +43,7 @@ class SingleNetworkCallActivity : AppCompatActivity(), CorountineItem {
                 is UiState.Success -> {
                     binding.progressBar.visibility = View.GONE
                     renderList(it.data)
+                    binding.recycleView.visibility = View.VISIBLE
                 }
                 is UiState.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE

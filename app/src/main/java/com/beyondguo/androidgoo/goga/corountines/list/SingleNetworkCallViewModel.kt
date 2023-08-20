@@ -8,7 +8,10 @@ import com.beyondguo.androidgoo.data.api.ApiHelper
 import com.beyondguo.androidgoo.data.local.DatabaseHelper
 import com.beyondguo.androidgoo.data.model.ApiUser
 import com.beyondguo.androidgoo.goga.corountines.base.UiState
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeout
 
 /**
  * @author guojichao@bytedance.com
@@ -21,6 +24,9 @@ class SingleNetworkCallViewModel(
 ): ViewModel() {
 
     private val uiState = MutableLiveData<UiState<List<ApiUser>>>()
+    private val exceptionHandler = CoroutineExceptionHandler { context, throwable ->
+        uiState.postValue(UiState.Error("error handler"))
+    }
 
     init {
         fetchUsers()
@@ -30,9 +36,13 @@ class SingleNetworkCallViewModel(
         viewModelScope.launch {
             uiState.postValue(UiState.Loading)
             try {
-                val usersFromApi = apiHelper.getUsers()
-                uiState.postValue(UiState.Success(usersFromApi))
-            }catch (e: Exception){
+                withTimeout(100) {
+                    val usersFromApi = apiHelper.getUsers()
+                    uiState.postValue(UiState.Success(usersFromApi))
+                }
+            }catch (e: TimeoutCancellationException) {
+                uiState.postValue(UiState.Error("Time out"))
+            } catch (e: Exception){
                 uiState.postValue(UiState.Error(e.toString()))
             }
         }
@@ -41,4 +51,15 @@ class SingleNetworkCallViewModel(
     fun getUiState(): LiveData<UiState<List<ApiUser>>> {
         return uiState
     }
+
+    private fun fetchUsersWithExceptionHandler() {
+        viewModelScope.launch(exceptionHandler) {
+            uiState.postValue(UiState.Loading)
+            withTimeout(100) {
+                val usersFromApi = apiHelper.getUsers()
+                uiState.postValue(UiState.Success(usersFromApi))
+            }
+        }
+    }
+
 }
