@@ -12,4 +12,8 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="button">Button</string>
     <string name="imageAvatar">Avatar</string>
+    <string name="package_info">获取包名</string>
+    <string name="self_package">获取包名</string>
+    <string name="packages">获取所有包名</string>
+    <string name="applications">获取Applications</string>
 </resources>
